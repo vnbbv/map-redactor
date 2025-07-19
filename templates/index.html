@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Редактор маршрутов БПЛА на Leaflet + стрелки</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+<body>
+
+<div id="panel">
+<label>Подложка: </label>
+<select id="basemap">
+<option value="osm">Схема</option>
+<option value="satellite">Спутник</option>
+<option value="hybrid">Гибрид</option>
+</select>
+
+<label>Цвет линии:</label>
+<input type="color" id="lineColor" value="#0000ff" />
+
+<label>Цвет стрелок:</label>
+<input type="color" id="arrowColor" value="#ff0000" />
+
+<button id="drawArrowBtn">➡️ Рисовать стрелку</button>
+<button id="savePngBtn">📸 Сохранить PNG</button>
+<button id="saveHistoryBtn">⬇️ Сохранить карту</button>
+<button id="flightHistoryBtn">🔄 История</button>
+</div>
+
+<div id="history-modal" class="modal hidden">
+  <div class="modal-content">
+    <h3>История пролётов</h3>
+    <ul id="history-list"></ul>
+    <button id="history-cancel-btn">Отмена</button>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden">
+<div class="modal-content">
+<h3>Сохранить PNG</h3>
+<label>Имя файла:</label>
+<input type="text" id="modal-filename" value="карта" />
+<div>
+    <label>Подпись на карте:</label>
+    <input type="text" id="modal-caption" />
+</div>
+
+<button id="modal-save-btn">Сохранить</button>
+<button id="modal-cancel-btn">Отмена</button>
+</div>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+<script src="https://unpkg.com/dom-to-image-more/src/dom-to-image-more.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<script src="{{ url_for('static', filename='javascripts/map.js') }}"></script>
+<script src="{{ url_for('static', filename='javascripts/export.js') }}"></script>
+<script src="{{ url_for('static', filename='javascripts/flight.js') }}"></script>
+
+</body>
+</html>
